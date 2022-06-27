@@ -36,4 +36,11 @@ const userSchema = new Schema(
     }
   );
 
-module.exports = { User, Thought };
+  // Create a virtual property `domain` that's computed from `email`.
+  userSchema.virtual('friendCount').get(function() {
+    return this.friends.length
+  });
+  const User = model('User', userSchema);
+  
+
+module.exports = User
