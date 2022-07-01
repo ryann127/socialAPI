@@ -7,44 +7,107 @@ connection.once('open', async () => {
   console.log('connected');
 
   // Drop existing courses
-  await Course.deleteMany({});
+  await User.deleteMany({});
 
   // Drop existing students
-  await Student.deleteMany({});
+  await Thought.deleteMany({});
 
   // Create empty array to hold the students
-  const students = [];
+  const users = [
+    {
+        username: 'instant_gramification',
+        email: 'andrei.howell@gmail.com'
+    },
+    {
+        username: 'knoll67',
+        email: 'skylerk@yahoo.com'
+    },
+    {
+        username: 'jkneeillustration',
+        email: 'janeyIll@hotmail.com'
+    },
+    {
+        username: 'stelliumtarot',
+        email: 'tarotwoman@gmail.com'
+    },
+    {
+        username: 'surprisehippo',
+        email: 'surprise!@gmail.com'
+    },
+    {
+        username: 'smileylily',
+        email: 'lillian0709@yahoo.com'
+    },
+    {
+        username: 'boopsnoot',
+        email: 'fastninja@yahoo.com'
+    },
+    {
+        username: 'sevenKnives',
+        email: 'braxton30@hotmail.com'
+    },
+    {
+        username: 'keebler_sk8s',
+        email: 'princess_keebler@yahoo.com'
+    },
+    {
+        username: 'soy-bella',
+        email: 'bella33@hotmail.com'
+    }
+  ];
 
-  // Loop 20 times -- add students to the students array
-  for (let i = 0; i < 20; i++) {
-    // Get some random assignment objects using a helper function that we imported from ./data
-    const assignments = getRandomAssignments(20);
-
-    const fullName = getRandomName();
-    const first = fullName.split(' ')[0];
-    const last = fullName.split(' ')[1];
-    const github = `${first}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}`;
-
-    students.push({
-      first,
-      last,
-      github,
-      assignments,
-    });
-  }
+    const thoughts = [
+        {
+            username: 'soy-bella',
+            thoughtText: 'funnel cakes are gonna have to pick a side when things go down between funnels and cakes'
+        },
+        {
+            username: 'stelliumtarot',
+            thoughtText: 'Sun in Cancer. Moon in Leo. But what does it mean?'
+        },
+        {
+            username: 'keebler_sk8s',
+            thoughtText: 'How many minions do you thing you could realistically fight before they overpowered you?'
+        },
+        {
+            username: 'boopsnoot',
+            thoughtText: "Your boos mean nothing, I've seen what makes you cheer"
+        },
+        {    
+            username: 'surprisehippo',
+            thoughtText: 'ratios build character'
+        },
+        {
+            username: 'smileylily',
+            thoughtText: 'same anxiety, different day'
+        },
+        {
+            username: 'knoll67',
+            thoughtText: "can't make fun of Julia Fox bc I have this theory that I am also annoying"
+        },
+        {
+            username: 'jkneeillustration',
+            thoughtText: 'Please reshare my new portrait!'
+        },
+        {
+            username: 'sevenKnives',
+            thoughtText: 'does my cat love me or is it stockholm syndrome?'
+        },
+        {
+            username: 'instant_gramification',
+            thoughtText: 'no thoughts today really'
+        }
+    ]
 
   // Add students to the collection and await the results
-  await Student.collection.insertMany(students);
+  await User.collection.insertMany(users);
 
   // Add courses to the collection and await the results
-  await Course.collection.insertOne({
-    courseName: 'UCLA',
-    inPerson: false,
-    students: [...students],
-  });
+  await thoughtText.collection.insertMany(thoughts)
 
   // Log out the seed data to indicate what should appear in the database
-  console.table(students);
+  console.table(users);
+  console.table(thoughts);
   console.info('Seeding complete! 🌱');
   process.exit(0);
 });
