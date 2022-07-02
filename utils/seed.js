@@ -7,10 +7,10 @@ connection.once('open', async () => {
   console.log('connected');
 
   // Drop existing courses
-  await User.deleteMany({});
+//   await User.deleteMany({});
 
-  // Drop existing students
-  await Thought.deleteMany({});
+//   // Drop existing students
+//   await Thought.deleteMany({});
 
   // Create empty array to hold the students
   const users = [
@@ -103,7 +103,7 @@ connection.once('open', async () => {
   await User.collection.insertMany(users);
 
   // Add courses to the collection and await the results
-  await thoughtText.collection.insertMany(thoughts)
+  await Thought.collection.insertMany(thoughts)
 
   // Log out the seed data to indicate what should appear in the database
   console.table(users);
