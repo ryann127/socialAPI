@@ -21,7 +21,18 @@ module.exports = {
   // Create a Thought  -- WORK ON THIS ONE
   createThought(req, res) {
     Thought.create(req.body)
-      .then((thought) => res.json(thought))
+      .then((dataThought) => {
+        return User.findOneAndUpdate(
+          { _id: req.body.userId  },
+          { $push: { thoughts: dataThought._id } },
+          { runValidators: true, new: true }
+        )
+      })
+      .then((dataThought) => { 
+        res.json( { message: 'Thought Created'})
+      }
+    
+      )
       .catch((err) => {
         console.log(err);
         return res.status(500).json(err);

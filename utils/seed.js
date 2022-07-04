@@ -4,57 +4,57 @@ const { User, Thought } = require('../models');
 connection.on('error', (err) => err);
 
 connection.once('open', async () => {
-  console.log('connected');
+    console.log('connected');
 
-  // Drop existing courses
-//   await User.deleteMany({});
+    // Drop existing courses
+    await User.deleteMany({});
 
-//   // Drop existing students
-//   await Thought.deleteMany({});
+    //   // Drop existing students
+    //   await Thought.deleteMany({});
 
-  // Create empty array to hold the students
-  const users = [
-    {
-        username: 'instant_gramification',
-        email: 'andrei.howell@gmail.com'
-    },
-    {
-        username: 'knoll67',
-        email: 'skylerk@yahoo.com'
-    },
-    {
-        username: 'jkneeillustration',
-        email: 'janeyIll@hotmail.com'
-    },
-    {
-        username: 'stelliumtarot',
-        email: 'tarotwoman@gmail.com'
-    },
-    {
-        username: 'surprisehippo',
-        email: 'surprise!@gmail.com'
-    },
-    {
-        username: 'smileylily',
-        email: 'lillian0709@yahoo.com'
-    },
-    {
-        username: 'boopsnoot',
-        email: 'fastninja@yahoo.com'
-    },
-    {
-        username: 'sevenKnives',
-        email: 'braxton30@hotmail.com'
-    },
-    {
-        username: 'keebler_sk8s',
-        email: 'princess_keebler@yahoo.com'
-    },
-    {
-        username: 'soy-bella',
-        email: 'bella33@hotmail.com'
-    }
-  ];
+    // Create empty array to hold the students
+    const users = [
+        {
+            username: 'instant_gramification',
+            email: 'andrei@gmail.com'
+        },
+        {
+            username: 'knoll67',
+            email: 'skylerk@yahoo.com'
+        },
+        {
+            username: 'jkneeillustration',
+            email: 'janeyIll@hotmail.com'
+        },
+        {
+            username: 'stelliumtarot',
+            email: 'tarotwoman@gmail.com'
+        },
+        {
+            username: 'surprisehippo',
+            email: 'surprise!@gmail.com'
+        },
+        {
+            username: 'smileylily',
+            email: 'lillian0709@yahoo.com'
+        },
+        {
+            username: 'boopsnoot',
+            email: 'fastninja@yahoo.com'
+        },
+        {
+            username: 'sevenKnives',
+            email: 'braxton30@hotmail.com'
+        },
+        {
+            username: 'keebler_sk8s',
+            email: 'princess_keebler@yahoo.com'
+        },
+        {
+            username: 'soy-bella',
+            email: 'bella33@hotmail.com'
+        }
+    ];
 
     const thoughts = [
         {
@@ -73,7 +73,7 @@ connection.once('open', async () => {
             username: 'boopsnoot',
             thoughtText: "Your boos mean nothing, I've seen what makes you cheer"
         },
-        {    
+        {
             username: 'surprisehippo',
             thoughtText: 'ratios build character'
         },
@@ -99,15 +99,15 @@ connection.once('open', async () => {
         }
     ]
 
-  // Add students to the collection and await the results
-  await User.collection.insertMany(users);
+    // Add students to the collection and await the results
+    await User.collection.insertMany(users);
 
-  // Add courses to the collection and await the results
-  await Thought.collection.insertMany(thoughts)
+    // Add courses to the collection and await the results
+    await Thought.collection.insertMany(thoughts)
 
-  // Log out the seed data to indicate what should appear in the database
-  console.table(users);
-  console.table(thoughts);
-  console.info('Seeding complete! 🌱');
-  process.exit(0);
+    // Log out the seed data to indicate what should appear in the database
+    console.table(users);
+    console.table(thoughts);
+    console.info('Seeding complete! 🌱');
+    process.exit(0);
 });
