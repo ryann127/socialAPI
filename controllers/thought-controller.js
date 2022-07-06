@@ -21,17 +21,20 @@ module.exports = {
   // Create a Thought  -- WORK ON THIS ONE
   createThought(req, res) {
     Thought.create(req.body)
-      .then((dataThought) => {
+      .then((thought) => {
         return User.findOneAndUpdate(
-          { _id: req.body.userId  },
-          { $push: { thoughts: dataThought._id } },
+          { username: thought.username },
+          { $addToSet: { thoughts: thought._id } },
           { runValidators: true, new: true }
-        )
+        );
       })
-      .then((dataThought) => { 
-        res.json( { message: 'Thought Created'})
-      }
-    
+      .then((user) =>
+        !user
+          ? res.status(404).json({
+            message:
+              'Thought created without a user ID'
+          })
+          : res.json('Thought created!')
       )
       .catch((err) => {
         console.log(err);
@@ -68,10 +71,10 @@ module.exports = {
   addReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $addToSet: { reactions: req.body} },
+      { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     )
-    .then((thought) =>
+      .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with this id!' })
           : res.json(Thought)
@@ -82,10 +85,10 @@ module.exports = {
   deleteReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { reactions: {reactionId: req.body.reactionId } } },
+      { $pull: { reactions: { reactionId: req.body.reactionId } } },
       { runValidators: true, new: true }
     )
-    .then((thought) =>
+      .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with this id!' })
           : res.json(Thought)
