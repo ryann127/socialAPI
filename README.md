@@ -15,7 +15,7 @@
 ## Description
  An API created through MongoDB and Express as a base for a social media network
 
- [![Walkthrough Video](https://drive.google.com/file/d/1gkNcZXZ4vk4QtQ7bokf_JY8t4U_RiW8a/view)]
+ ![Walkthrough Video](https://drive.google.com/file/d/1gkNcZXZ4vk4QtQ7bokf_JY8t4U_RiW8a/view)
 
  ## Installation
 git clone the following repository: 
