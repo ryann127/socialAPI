@@ -10,7 +10,7 @@ connection.once('open', async () => {
     await User.deleteMany({});
 
     //   // Drop existing students
-    //   await Thought.deleteMany({});
+    await Thought.deleteMany({});
 
     // Create empty array to hold the students
     const users = [
